@@ -11,3 +11,6 @@ public class TestesEstudoApplication {
 	}
 
 }
+// "localhost:8080/h2-console" para entrar no banco de dados
+// após isso, ir em JDBC URL e colar "jdbc:h2:mem:testdb"
+// apertar em connect
