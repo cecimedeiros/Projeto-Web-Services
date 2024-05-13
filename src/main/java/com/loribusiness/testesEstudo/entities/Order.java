@@ -1,5 +1,6 @@
 package com.loribusiness.testesEstudo.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -16,6 +17,8 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+    //essa redação toda da linha acima é para definir o horário no padrão ISO 8601
     private Instant moment;
 
     //associações

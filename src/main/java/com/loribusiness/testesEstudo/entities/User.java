@@ -1,5 +1,6 @@
 package com.loribusiness.testesEstudo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -20,6 +21,9 @@ public class User implements Serializable {
     private String phone;
     private String password;
 
+    @JsonIgnore /* isso aqui é muito importante pra não dar merda quando faz associação
+    pois o user e o orders vão ficar se chamando infinitamente criando uma chamada recursiva
+    OBS: só é preciso ter esse comando em um laso da associação,, eu poderia ter colocado em order tbm*/
     @OneToMany(mappedBy = "client") //outro lado da associação indica que é vários orders para um client
     private List<Order> orders = new ArrayList<>();
 
