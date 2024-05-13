@@ -1,6 +1,7 @@
 package com.loribusiness.testesEstudo.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.loribusiness.testesEstudo.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -20,6 +21,7 @@ public class Order implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     //essa redação toda da linha acima é para definir o horário no padrão ISO 8601
     private Instant moment;
+    private Integer orderStatus;
 
     //associações
     @ManyToOne //essa porrinha aqui indica que a relação de client é 1 para vários orders
@@ -28,9 +30,10 @@ public class Order implements Serializable {
 
     public Order(){}
 
-    public Order(Long id, Instant moment, User client) {
+    public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
         this.id = id;
         this.moment = moment;
+        setOrderStatus(orderStatus);
         this.client = client;
     }
 
@@ -48,6 +51,16 @@ public class Order implements Serializable {
 
     public void setMoment(Instant moment) {
         this.moment = moment;
+    }
+
+    public OrderStatus getOrderStatus(){
+        return OrderStatus.valueOf(orderStatus);
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus){
+        if(orderStatus != null) {
+            this.orderStatus = orderStatus.getCode();
+        }
     }
 
     public User getClient() {
