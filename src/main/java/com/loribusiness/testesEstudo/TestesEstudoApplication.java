@@ -11,5 +11,3 @@ public class TestesEstudoApplication {
 	}
 
 }
-// mapeamento objeto relacional e instanciação de bd feita
-// lá em config > testconfig foram instanciados manualmente objetos e postos no bd
