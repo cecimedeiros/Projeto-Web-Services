@@ -1,7 +1,6 @@
 package com.loribusiness.testesEstudo.services;
 
 import com.loribusiness.testesEstudo.entities.Category;
-import com.loribusiness.testesEstudo.entities.User;
 import com.loribusiness.testesEstudo.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
