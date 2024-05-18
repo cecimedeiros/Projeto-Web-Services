@@ -25,6 +25,10 @@ public class Product implements Serializable {
     @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), //joimColums para definir a chave estrangeira da entidade
     inverseJoinColumns = @JoinColumn(name = "category_id")) //inverseJoimColums para definir a chave estrangeira da OUTRA entidade
     private Set<Category> categories = new HashSet<>();
+
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
+
     public Product(){}
 
     public Product(Long id, String name, String description, Double price, String imgUrl) {
@@ -77,6 +81,14 @@ public class Product implements Serializable {
 
     public Set<Category> getCategories() {
         return categories;
+    }
+
+    public Set<Order> getOrders(){
+        Set<Order> set = new HashSet<>();
+        for(OrderItem x : items){
+            set.add(x.getOrder());
+        }
+        return set;
     }
 
     @Override
