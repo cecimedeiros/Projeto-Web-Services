@@ -6,7 +6,9 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_order") //essa belezinha é pra os nomes não conflitarem na tabela
@@ -27,6 +29,9 @@ public class Order implements Serializable {
     @ManyToOne //essa porrinha aqui indica que a relação de client é 1 para vários orders
     @JoinColumn(name = "client_id")
     private User client;
+
+    @OneToMany(mappedBy = "id.order") //pq na classe orderItem, quem tem o pedido é esse id
+    private Set<OrderItem> items = new HashSet<>();
 
     public Order(){}
 
@@ -69,6 +74,10 @@ public class Order implements Serializable {
 
     public void setClient(User client) {
         this.client = client;
+    }
+
+    public Set<OrderItem> getItems(){
+        return items;
     }
 
     @Override
