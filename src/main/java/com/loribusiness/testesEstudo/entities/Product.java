@@ -20,12 +20,11 @@ public class Product implements Serializable {
     private String description;
     private Double price;
     private String imgUrl;
-    @Transient //isso aqui impede que o JPA tente interpretar isso; pra esconder do JPA
-    private Set<Category> categories = new HashSet<>();
-    //um set representa um conjunto;
-    //ele assegura que não vá existir um produto com mais de uma ocorrencia da mesma categoria;
-    //o produto não vai ter uma mesma categoria mais de uma vez
 
+    @ManyToMany //muitos para muitos; categotias e produtos podem ter muitos uns dos outros.
+    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), //joimColums para definir a chave estrangeira da entidade
+    inverseJoinColumns = @JoinColumn(name = "category_id")) //inverseJoimColums para definir a chave estrangeira da OUTRA entidade
+    private Set<Category> categories = new HashSet<>();
     public Product(){}
 
     public Product(Long id, String name, String description, Double price, String imgUrl) {
