@@ -42,11 +42,20 @@ public class UserResource {
         return ResponseEntity.noContent().build(); //para indicar que não tem resposta
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj){
+        obj = service.update(id, obj);
+        return ResponseEntity.ok().body(obj);
+    }
 }
 /*
-Agora é possivel deletar no postman
-só selecionar delete no /users/numeroDoUserApagado
-OBS: nessa altura do campeonato vai dar errado pois não houve tratamento de exceção
-     e um objeto associado a outro (user tem pedidos) não pode ser apagado
- vai dar certo quando retornar um 204 noContent
+agora é possível dar update
+- nopostman selecione PUT
+- users/numeroDoUserQueSofreráUpdate
+- escreva no body:
+{
+    "name": "nomeDoUser",
+    "email": "emaildouser@leromail.com",
+    "phone": "00000000"
+}
 */
