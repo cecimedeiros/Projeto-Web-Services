@@ -1,5 +1,6 @@
 package com.loribusiness.testesEstudo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -16,6 +17,7 @@ public class Payment implements Serializable {
     private Long id;
     private Instant moment;
 
+    @JsonIgnore
     @OneToOne //pois pagamento é a classe dependente (um pedido pode ter 1 ou 0 pagamentos)
     @MapsId
     private Order order;
