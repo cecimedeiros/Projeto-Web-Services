@@ -2,6 +2,7 @@ package com.loribusiness.testesEstudo.services;
 
 import com.loribusiness.testesEstudo.entities.User;
 import com.loribusiness.testesEstudo.repositories.UserRepository;
+import com.loribusiness.testesEstudo.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,8 @@ public class UserService {
 
     public User findById(Long id){
         Optional <User> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+        //esse orElseThrow é tipo "cata lá, se não tiver joga exceção na cara"
     }
 
     public User insert(User obj){

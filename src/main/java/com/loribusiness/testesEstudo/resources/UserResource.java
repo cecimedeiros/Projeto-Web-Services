@@ -48,14 +48,3 @@ public class UserResource {
         return ResponseEntity.ok().body(obj);
     }
 }
-/*
-agora é possível dar update
-- nopostman selecione PUT
-- users/numeroDoUserQueSofreráUpdate
-- escreva no body:
-{
-    "name": "nomeDoUser",
-    "email": "emaildouser@leromail.com",
-    "phone": "00000000"
-}
-*/
