@@ -36,20 +36,17 @@ public class UserResource {
         return ResponseEntity.created(uri).body(obj);
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){ //void pois não tem resposta para uma deleção
+        service.delete(id);
+        return ResponseEntity.noContent().build(); //para indicar que não tem resposta
+    }
+
 }
-//esses novos métodos são para que seja possivel inserir um novo objeto pelo Postman
 /*
-- no postman troque o método get por post
-- no caminho "http://localhost:8080/users"
-- vá na aba body (abaixo do caminho)
-- sub-aba raw
-- cola isso aqui:
-{
-    "name": "Lori",
-    "email": "lori@leromail.com",
-    "phone": "991862052",
-    "password": "000000"
-}
-- veja se o JSON realmente está selecionado
-- se no status tiver um 200 OK é sinal de que deu bom, pode comemorar
+Agora é possivel deletar no postman
+só selecionar delete no /users/numeroDoUserApagado
+OBS: nessa altura do campeonato vai dar errado pois não houve tratamento de exceção
+     e um objeto associado a outro (user tem pedidos) não pode ser apagado
+ vai dar certo quando retornar um 204 noContent
 */
