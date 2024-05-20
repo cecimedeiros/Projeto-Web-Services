@@ -33,6 +33,9 @@ public class Order implements Serializable {
     @OneToMany(mappedBy = "id.order") //pq na classe orderItem, quem tem o pedido é esse id
     private Set<OrderItem> items = new HashSet<>();
 
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL) //"order" pq é o nome do atributo lá do outro lado
+    private Payment payment; //aquele cascadeall é para mapear as 2 entidades como tendo o mesmo id
+
     public Order(){}
 
     public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
@@ -74,6 +77,14 @@ public class Order implements Serializable {
 
     public void setClient(User client) {
         this.client = client;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
     public Set<OrderItem> getItems(){

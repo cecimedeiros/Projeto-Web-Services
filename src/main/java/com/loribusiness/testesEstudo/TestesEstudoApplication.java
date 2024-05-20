@@ -11,3 +11,4 @@ public class TestesEstudoApplication {
 	}
 
 }
+//la no h2-console o id do order é o mesmo do payment, tudo certinho :)
